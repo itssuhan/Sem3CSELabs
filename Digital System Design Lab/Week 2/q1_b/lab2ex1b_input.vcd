@@ -1,0 +1,109 @@
+$date
+	Mon Aug 29 11:18:53 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module lab2ex1b_input $end
+$var wire 1 ! f2 $end
+$var wire 1 " f1 $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$var reg 1 % c $end
+$var reg 1 & d $end
+$scope module uut $end
+$var wire 1 # a $end
+$var wire 1 $ b $end
+$var wire 1 % c $end
+$var wire 1 & d $end
+$var wire 1 " f1 $end
+$var wire 1 ! f2 $end
+$var wire 1 ' k1 $end
+$var wire 1 ( k2 $end
+$var wire 1 ) k3 $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+0!
+$end
+#20
+1"
+1!
+1(
+1&
+#40
+0(
+1)
+0&
+1%
+#60
+1(
+1&
+#80
+1'
+1!
+0(
+0)
+0&
+0%
+1$
+#100
+0"
+0!
+0'
+1&
+#120
+0&
+1%
+#140
+1&
+#160
+0&
+0%
+0$
+1#
+#180
+1"
+1!
+1(
+1&
+#200
+0(
+1)
+0&
+1%
+#220
+1(
+1&
+#240
+1'
+1!
+0(
+0)
+0&
+0%
+1$
+#260
+0"
+0!
+0'
+1&
+#280
+0&
+1%
+#300
+1&
+#320
