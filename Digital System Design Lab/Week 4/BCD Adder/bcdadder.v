@@ -1,3 +1,4 @@
+// BCD Adder using 4 bit adder //
 module bcdadder(x2,y2,s3,cin,cout);
 input [3:0]x2,y2;
 input cin;
