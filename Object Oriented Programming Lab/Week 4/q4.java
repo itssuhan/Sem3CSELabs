@@ -12,7 +12,7 @@ class Counter {
     }
 }
 
-class ClassDemo {
+class CounterDemo {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             int ch = 0;

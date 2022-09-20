@@ -48,7 +48,7 @@ class Stack
         }
     }
 }
-class stackop
+class stackDemo
 {
     public static void main(String args[])
     {

@@ -17,7 +17,7 @@ class Complex {
     }
 
     void compdisp() {
-        System.out.println(+ x + " + " + y + "i");
+        System.out.println(+x + " + " + y + "i");
     }
 
     Complex add(Complex c1, Complex c2) {
@@ -44,7 +44,7 @@ class Complex {
     }
 }
 
-class ComplexDemo{
+class ComplexDemo {
     public static void main(String[] args) {
 
         Complex c1 = new Complex(4, 2);
