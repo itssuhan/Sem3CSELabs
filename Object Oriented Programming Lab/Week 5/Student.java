@@ -150,7 +150,7 @@ class StudentDemo
 {
 	public static void main(String args[])
 	{
-		System.out.println("Enter Number of Students : ");
+		System.out.print("Enter Number of Students : ");
 		int n = Student.sc.nextInt();
 		Student[] s=new Student[n];
 		for(int i=0;i<n;i++)
