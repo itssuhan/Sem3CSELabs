@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 typedef struct {
     int st[100];
     int tos;
