@@ -2,7 +2,7 @@
 typedef struct {
     char st[10];
     int tos;
-} Stack;
+}Stack;
 
 int isFull(Stack s) {
     if ((s.tos+1) > 9)
