@@ -95,9 +95,9 @@ void main()
 {
     char ex[EXPR_SIZE];
     int i, j = 0;
-    printf("enter prefix expression\n");
+    printf("Enter a Prefix Expression : ");
     scanf("%s", ex);
     for (i = strlen(ex) - 1; i >= 0; i--, j++)
         expr[j] = ex[i];
-    printf("\nAnswer: %d\n", eval());
+    printf("Result : %d\n", eval());
 }
