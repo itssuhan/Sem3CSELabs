@@ -86,7 +86,7 @@ int main()
     }
     y[j] = '\0';
 
-    printf("Reversed prefix exp : ");
+    printf("Reversed Prefix Expression : ");
     printf("%s\n", y);
 
     int op1, op2, val;
@@ -104,6 +104,6 @@ int main()
             push(&s, val);
         }
     }
-    printf("Value of prefix exp = %d\n", pop(&s));
+    printf("Value of Prefix Expression = %d\n", pop(&s));
     return 0;
 }
