@@ -1,103 +1,109 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#define MAX 20
 
-#define STACK_SIZE 20
-#define EXPR_SIZE 20
-
-typedef enum
+typedef struct stack
 {
-    lparan,
-    rparan,
-    plus,
-    minus,
-    multiply,
-    divide,
-    mod,
-    eos,
-    operand
-} PRECEDENCE;
+    int data[MAX];
+    int top;
+} stack;
 
-int stack[STACK_SIZE];
-char expr[EXPR_SIZE];
-
-void push(int *top, int x)
+void init(stack *s)
 {
-    stack[++(*top)] = x;
+    s->top = -1;
 }
 
-int pop(int *top)
+void push(stack *s, int x)
 {
-    return stack[(*top)--];
+    (s->top)++;
+    s->data[s->top] = x;
 }
 
-PRECEDENCE getToken(char *symbol, int *n)
+int pop(stack *s)
 {
-    *symbol = expr[(*n)++];
-    switch (*symbol)
+    int x = s->data[s->top];
+    (s->top)--;
+    return x;
+}
+
+int evaluate(char x, int op1, int op2)
+{
+    if (x == '+')
     {
-    case '+':
-        return plus;
-    case '-':
-        return minus;
-    case '*':
-        return multiply;
-    case '/':
-        return divide;
-    case '%':
-        return mod;
-    case '(':
-        return lparan;
-    case ')':
-        return rparan;
-    case '\0':
-        return eos;
-    default:
-        return operand;
+        return op1 + op2;
+    }
+
+    if (x == '-')
+    {
+        return op2 - op1;
+    }
+
+    if (x == '*')
+    {
+        return op1 * op2;
+    }
+
+    if (x == '/')
+    {
+        return op2 / op1;
+    }
+
+    if (x == '%')
+    {
+        return op2 % op1;
     }
 }
 
-int eval()
+int isDigit(char x)
 {
-    PRECEDENCE token;
-    char symbol;
-    int n = 0, c, op1, op2, top = -1;
-    token = getToken(&symbol, &n);
-    while (token != eos)
+    if (x >= '0' && x <= '9')
     {
-        if (token == operand)
+        return 1;
+    }
+
+    return 0;
+}
+
+int main()
+{
+    stack s;
+    init(&s);
+
+    printf("Enter an expression with single digit operands & operators : ");
+    char x[MAX];
+    scanf("%s", x);
+    char y[MAX];
+    int i, c, j;
+
+    for (i = 0; x[i] != '\0'; i++)
+    {
+        c++;
+    }
+
+    for (j = 0, i = c - 1; i >= 0; i--, j++)
+    {
+        y[j] = x[i];
+    }
+    y[j] = '\0';
+
+    printf("Reversed prefix exp : ");
+    printf("%s\n", y);
+
+    int op1, op2, val;
+    for (i = 0; y[i] != '\0'; i++)
+    {
+        if (isDigit(y[i]))
         {
-            c = symbol - '0';
-            push(&top, c);
+            push(&s, y[i] - '0');
         }
         else
         {
-            op2 = pop(&top);
-            op1 = pop(&top);
-            if (token == plus)
-                push(&top, op2 + op1);
-            else if (token == minus)
-                push(&top, op2 - op1);
-            else if (token == multiply)
-                push(&top, op2 * op1);
-            else if (token == divide)
-                push(&top, op2 / op1);
-            else if (token == mod)
-                push(&top, op2 % op1);
+            op2 = pop(&s);
+            op1 = pop(&s);
+            val = evaluate(y[i], op1, op2);
+            push(&s, val);
         }
-        token = getToken(&symbol, &n);
-        // printf("%d\n", stack[top]);
     }
-    return pop(&top);
-}
-
-void main()
-{
-    char ex[EXPR_SIZE];
-    int i, j = 0;
-    printf("Enter a Prefix Expression : ");
-    scanf("%s", ex);
-    for (i = strlen(ex) - 1; i >= 0; i--, j++)
-        expr[j] = ex[i];
-    printf("Result : %d\n", eval());
+    printf("Value of prefix exp = %d\n", pop(&s));
+    return 0;
 }
