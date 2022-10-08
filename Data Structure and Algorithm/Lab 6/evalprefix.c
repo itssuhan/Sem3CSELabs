@@ -1,140 +1,103 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
-#define STACK_MAX 500
-#define OPERAND 10
-#define OPERATOR 20
+#define STACK_SIZE 20
+#define EXPR_SIZE 20
 
-/* stack structure */
-typedef struct prexp
+typedef enum
 {
-  int top;
-  int stack[STACK_MAX];
-}stck;
+    lparan,
+    rparan,
+    plus,
+    minus,
+    multiply,
+    divide,
+    mod,
+    eos,
+    operand
+} PRECEDENCE;
 
-// Init the stack
-void init(stck *st )
+int stack[STACK_SIZE];
+char expr[EXPR_SIZE];
+
+void push(int *top, int x)
 {
-  st->top=-1;
-  //memset(st->stack, 0, STACK_MAX);
+    stack[++(*top)] = x;
 }
 
-void push(stck *st,int num)
+int pop(int *top)
 {
-	if(st->top == STACK_MAX)
-	{
-		printf("Stack Overflow \n");
-		exit(-1);
-	}
-    st->top++;
-    st->stack[st->top]=num;
+    return stack[(*top)--];
 }
 
-int pop(stck *st)
+PRECEDENCE getToken(char *symbol, int *n)
 {
-    int num;
-    if(st->top < 0 )
+    *symbol = expr[(*n)++];
+    switch (*symbol)
     {
-    	printf("Stack Underflow \n");
-    	exit(-1);
+    case '+':
+        return plus;
+    case '-':
+        return minus;
+    case '*':
+        return multiply;
+    case '/':
+        return divide;
+    case '%':
+        return mod;
+    case '(':
+        return lparan;
+    case ')':
+        return rparan;
+    case '\0':
+        return eos;
+    default:
+        return operand;
     }
-    num=st->stack[st->top];
-    st->top--;
-    return num;
 }
 
-int top(stck *st)
+int eval()
 {
-	return st->stack[0];
-}
-// evaluate an expression
-void eval(stck *st,char op,int num1,int num2)
-{
-	int res;
-	switch(op)
-	{
-		case '+': res=num1+num2;
-		break;
-		case '-': res=num1-num2;
-		break;
-		case '*': res=num1*num2;
-		break;
-		case '/': res=num1/num2;
-		break;
-		case '%': res=num1%num2;
-		break;
-		case '$': res=pow(num1,num2);
-		break;
-	}
-	push(st,res);
-}
-
-int gettype(char c)
-{
-      switch(c)
-      {
-         case '+':
-         case '-':
-         case '*':
-         case '/':
-         case '$':
-         case '%': return OPERATOR;
-         default : return OPERAND;
+    PRECEDENCE token;
+    char symbol;
+    int n = 0, c, op1, op2, top = -1;
+    token = getToken(&symbol, &n);
+    while (token != eos)
+    {
+        if (token == operand)
+        {
+            c = symbol - '0';
+            push(&top, c);
         }
+        else
+        {
+            op2 = pop(&top);
+            op1 = pop(&top);
+            if (token == plus)
+                push(&top, op2 + op1);
+            else if (token == minus)
+                push(&top, op2 - op1);
+            else if (token == multiply)
+                push(&top, op2 * op1);
+            else if (token == divide)
+                push(&top, op2 / op1);
+            else if (token == mod)
+                push(&top, op2 % op1);
+        }
+        token = getToken(&symbol, &n);
+        // printf("%d\n", stack[top]);
+    }
+    return pop(&top);
 }
 
-
-int main(int argc, char *argv[])
+void main()
 {
-
-	if ( argc != 2 ) /* argc should be 2 for correct execution */
-	{
-		/* argv[0] is the program name */
-		/* argc is the count of the number of strings in argv */
-		/* In this case argc=2 as argv[0] contains the filename
-				argv[1] is prefix expression respectively */
-		printf( "Invalid Syntax :: Format - prefix.exe expr \n");
-		return -1;
-	}
-	else
-	{
-
-		char * pre;
-		int num1,num2,item,l,i;
-		stck stk;
-
-		init(&stk);
-		pre = argv[1];
-		l=strlen(pre);
-
-		for(i=l-1;i>=0;i--)
-		{
-			if(pre[i]==' ' || pre[i]=='\0') //just in case!
-				continue;
-			switch(gettype(pre[i])) // process type
-			{
-				case OPERAND :
-					item=pre[i]-'0'; // string to int conversion
-					push(&stk,item);
-				break;
-
-				case OPERATOR :
-					num1=pop(&stk);
-					num2=pop(&stk);
-					eval(&stk,pre[i],num1,num2);
-				break;
-			}
-		}
-
-		if(stk.top != 0 )
-		{
-			printf("Invalid Expression! \n");
-			return -1;
-		}
-
-		printf("Result = %d \n",top(&stk)); // print result
-		return 0 ;
-	}
+    char ex[EXPR_SIZE];
+    int i, j = 0;
+    printf("enter prefix expression\n");
+    scanf("%s", ex);
+    for (i = strlen(ex) - 1; i >= 0; i--, j++)
+        expr[j] = ex[i];
+    printf("\nAnswer: %d\n", eval());
 }
