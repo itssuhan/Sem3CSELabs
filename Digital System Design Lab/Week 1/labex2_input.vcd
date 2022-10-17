@@ -1,5 +1,5 @@
 $date
-	Mon Sep  5 08:43:48 2022
+	Mon Aug 22 11:23:45 2022
 $end
 $version
 	Icarus Verilog
@@ -7,9 +7,9 @@ $end
 $timescale
 	1ns
 $end
-$scope module lab2ex2a_input $end
-$var wire 1 ! f2 $end
-$var wire 1 " f1 $end
+$scope module labex2_input $end
+$var wire 1 ! g $end
+$var wire 1 " f $end
 $var reg 1 # a $end
 $var reg 1 $ b $end
 $var reg 1 % c $end
@@ -19,96 +19,77 @@ $var wire 1 # a $end
 $var wire 1 $ b $end
 $var wire 1 % c $end
 $var wire 1 & d $end
-$var wire 1 " f1 $end
-$var wire 1 ! f2 $end
-$var wire 1 ' k1 $end
-$var wire 1 ( k2 $end
+$var wire 1 " f $end
+$var wire 1 ! g $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-1(
-0'
 0&
 0%
 0$
 0#
-0"
-0!
-$end
-#20
-1&
-#40
 1"
 1!
-1'
+$end
+#20
+0"
+0!
+1&
+#40
+0"
 0&
 1%
 #60
+1"
 1&
 #80
-0"
-0!
-0(
+1"
 0&
 0%
 1$
 #100
-1"
-1!
-1(
+0"
 1&
 #120
 0"
-0!
-0(
 0&
 1%
 #140
 1"
-1!
-1(
 1&
 #160
-0"
-0!
-0'
+1!
+1"
 0&
 0%
 0$
 1#
 #180
+0"
+0!
 1&
 #200
-1"
-1!
-1'
+0"
 0&
 1%
 #220
+1"
 1&
 #240
 0"
-0!
-0(
 0&
 0%
 1$
 #260
 1"
-1!
-1(
 1&
 #280
-0"
-0!
-0(
+1"
 0&
 1%
 #300
-1"
-1!
-1(
+0"
 1&
 #320

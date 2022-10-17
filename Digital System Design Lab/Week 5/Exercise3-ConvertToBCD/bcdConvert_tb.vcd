@@ -1,0 +1,31 @@
+$date
+	Sun Oct  2 10:44:35 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module bcdConvert_tb $end
+$var wire 4 ! y [3:0] $end
+$var reg 4 " x [3:0] $end
+$scope module bcdConv $end
+$var wire 4 # x [3:0] $end
+$var wire 4 $ y [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b110 $
+b1010 #
+b1010 "
+b110 !
+$end
+#20
+b10 !
+b10 $
+b110 "
+b110 #
+#40
