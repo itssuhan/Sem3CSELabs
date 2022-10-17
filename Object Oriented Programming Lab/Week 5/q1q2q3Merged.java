@@ -108,13 +108,13 @@ class q1q2q3Merged {
                 String fName = sc.nextLine();
                 // System.out.print("Enter date of joining in the format dd/mm/yy ");
                 // String DateOJ = sc.nextLine();
-                System.out.print("Enter day of DOJ "); //2 digit int
+                System.out.print("Enter day of DOJ : "); //2 digit int
                 int d = sc.nextInt();
-                System.out.print("Enter month of DOJ "); //2 digit int
+                System.out.print("Enter month of DOJ : "); //2 digit int
                 int m = sc.nextInt();
-                System.out.print("Enter year of DOJ "); //4 digit int
+                System.out.print("Enter year of DOJ : "); //4 digit int
                 int y = sc.nextInt();
-                System.out.print("Enter the Semester ");
+                System.out.print("Enter the Semester : ");
                 short semester = sc.nextShort();
                 System.out.print("Enter the GPA : ");
                 float gpavg = sc.nextFloat();
